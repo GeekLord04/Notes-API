@@ -23,7 +23,7 @@ app.get("/", (req, res) => {
 const PORT = process.env.PORT || 5000;
 
 mongoose
-  .connect("mongodb+srv://chirag_cy:Chirag34@cluster0.dvtc65t.mongodb.net/notes_db?retryWrites=true&w=majority")
+  .connect(process.env.MONGO_URI)
   .then(() => {
     app.listen(PORT, () => {
       console.log("Server is started on port no. " + PORT);
@@ -32,3 +32,4 @@ mongoose
   .catch((err) => {
     console.log(err);
   });
+  
