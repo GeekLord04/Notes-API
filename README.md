@@ -62,7 +62,7 @@ There are 2 routes
 
 ### Note routes
 
-#### Create new note
+#### Create a new note
 
 ```http
   POST /note/
