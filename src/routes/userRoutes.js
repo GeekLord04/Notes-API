@@ -6,4 +6,6 @@ userRouter.post("/signup", signup);
 
 userRouter.post("/signin", signin);
 
+userRouter.get("/test",test);
+
 module.exports = userRouter;
