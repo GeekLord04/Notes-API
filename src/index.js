@@ -20,6 +20,14 @@ app.get("/", (req, res) => {
   res.send("Notes API");
 });
 
+app.get("/callback", (req, res) => {
+  const code = req.query.code;
+  if (!code) {
+    return res.status(400).send("No code received from Salesforce");
+  }
+  res.send(`Salesforce Auth Success! Code: ${code}`);
+});
+
 const PORT = process.env.PORT || 5000;
 
 mongoose
