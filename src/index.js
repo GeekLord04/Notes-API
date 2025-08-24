@@ -21,12 +21,24 @@ app.get("/", (req, res) => {
 });
 
 app.get("/callback", (req, res) => {
-  const code = req.query.code;
+  const code = req.query.code
   if (!code) {
-    return res.status(400).send("No code received from Salesforce");
+    return res.status(400).send("No code received from Salesforce")
   }
-  res.send(`Salesforce Auth Success! Code: ${code}`);
-});
+  // redirect to Android app custom scheme with the code
+  const redirectToApp = `myapp://auth?code=${encodeURIComponent(code)}`
+  console.log(res)
+  // Optionally render a small page with a fallback link
+  res.send(`
+    <html>
+      <body>
+        <p>Auth success. Redirecting to app... ${code}</p>
+        <a id="link" href="${redirectToApp}">Open App</a>
+        <script>location.href='${redirectToApp}';</script>
+      </body>
+    </html>
+  `)
+})
 
 const PORT = process.env.PORT || 5000;
 
